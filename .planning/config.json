@@ -1,0 +1,16 @@
+{
+  "mode": "yolo",
+  "depth": "standard",
+  "model_profile": "balanced",
+  "commit_docs": true,
+  "pr_workflow": false,
+  "workflow": {
+    "research": false,
+    "plan_check": true,
+    "verifier": true
+  },
+  "github": {
+    "enabled": true,
+    "issue_mode": "auto"
+  }
+}
