@@ -38,8 +38,8 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Polish
 
-- [ ] **POL-01**: First-run and empty states: unconfigured app routes to Settings; empty domains/accounts show helpful messaging
-- [ ] **POL-02**: App icon and menu bar icon set; README documents setup (API key from panel.mxroute.com/api-keys.php); Release build verified
+- [x] **POL-01**: First-run and empty states: unconfigured app routes to Settings; empty domains/accounts show helpful messaging
+- [x] **POL-02**: App icon and menu bar icon set; README documents setup (API key from panel.mxroute.com/api-keys.php); Release build verified
 
 ## v2 Requirements
 
@@ -84,8 +84,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | UI-03 | Phase 4 | Complete |
 | UI-04 | Phase 4 | Complete |
 | UI-05 | Phase 4 | Complete |
-| POL-01 | Phase 5 | Pending |
-| POL-02 | Phase 5 | Pending |
+| POL-01 | Phase 5 | Complete |
+| POL-02 | Phase 5 | Complete |
 
 **Coverage:**
 - v1 requirements: 19 total
@@ -94,4 +94,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-08-25*
-*Last updated: 2026-08-26 after Phase 4 completion*
+*Last updated: 2026-08-26 after Phase 5 completion — all 19 v1 requirements complete*

@@ -5,17 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-08-25)
 
 **Core value:** Creating a new email forwarder takes under ten seconds from clicking the menu bar icon.
-**Current focus:** Phase 5 — Polish & Release (execution complete)
+**Current focus:** v1.0.0 complete — ready for milestone audit and archive
 
 ## Current Position
 
-Phase: 5 of 5, Plan 3 of 3 complete
+Phase: 5 of 5 complete (Polish & Release) — verified 15/15 must-haves, moved to completed/
 Plan: —
-Status: Phase 5 execution complete — awaiting phase verification
-Last activity: 2026-08-26 — Completed 05-03-PLAN.md (checkpoint approved after Open Settings fix)
+Status: All v1.0.0 phases complete and verified; ready for `/kata-audit-milestone` then `/kata-complete-milestone`
+Last activity: 2026-08-26 — Phase 5 verified (passed) and completed; GitHub issues #5/#23/#24 closed
 
-Progress: Phases: ████░ 4/5 complete
-Phase 5: ███ 3/3 plans
+Progress: Phases: █████ 5/5 complete
 
 ## Accumulated Context
 
@@ -47,5 +46,5 @@ Issue count: 0 (see .planning/issues/open/)
 
 ## Session Continuity
 
-Last session: 2026-08-26 — Completed 05-03-PLAN.md (checkpoint approved after Open Settings fix)
-Next step: Phase 5 verification, then milestone audit/completion
+Last session: 2026-08-26 — Phase 5 executed and verified (3 plans incl. first parallel wave; Release checkpoint approved after Open Settings fix); milestone v1.0.0 all phases done
+Next step: `/kata-audit-milestone`, then `/kata-complete-milestone 1.0.0`
