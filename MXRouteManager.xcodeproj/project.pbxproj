@@ -29,9 +29,23 @@
 		62FCF07C303E45F300255216 /* MXRouteManagerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MXRouteManagerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		62FCF090303E45F300255216 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Models/.gitkeep,
+				Services/.gitkeep,
+			);
+			target = 62FCF062303E45F200255216 /* MXRouteManager */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		62FCF065303E45F200255216 /* MXRouteManager */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				62FCF090303E45F300255216 /* PBXFileSystemSynchronizedBuildFileExceptionSet */,
+			);
 			path = MXRouteManager;
 			sourceTree = "<group>";
 		};
