@@ -5,17 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-08-25)
 
 **Core value:** Creating a new email forwarder takes under ten seconds from clicking the menu bar icon.
-**Current focus:** Phase 3 — MXRoute API Client
+**Current focus:** Phase 4 — Create-Forwarder UI (planned, ready to execute)
 
 ## Current Position
 
-Phase: 3 of 5, Plan 4 of 4 complete (Test Connection wired to Settings; checkpoint approved)
-Plan: 03-04 complete
-Status: Phase 3 execution complete — awaiting phase verification
-Last activity: 2026-08-26 — Completed 03-04-PLAN.md (checkpoint approved): Test Connection button added to SettingsView, verified end-to-end against the live MXRoute API (domain count, decoded bad-key error, keychain Always Allow, real key restored)
+Phase: 3 of 5 complete (MXRoute API Client) — verified 36/36 must-haves, moved to completed/
+Plan: —
+Status: Phase 4 planned (3 plans); ready for `/kata-execute-phase 4`
+Last activity: 2026-08-26 — Phase 3 verified and completed; GitHub issues #3/#11-#17 closed; Phase 4 planned
 
-Progress: Phases: ██░░░ 2/5 complete
-Phase 3: ████ 4/4 plans
+Progress: Phases: ███░░ 3/5 complete
 
 ## Accumulated Context
 
@@ -46,5 +45,5 @@ Issue count: 0 (see .planning/issues/open/)
 
 ## Session Continuity
 
-Last session: 2026-08-26 — Plan 03-04 executed and checkpoint approved (Test Connection wired to Settings; live-API demo confirmed: domain count, decoded bad-key error, keychain Always Allow, real key restored)
-Next step: Phase 3 verification, then /kata-plan-phase 4
+Last session: 2026-08-26 — Phase 3 executed and verified (4 plans, live-API checkpoint approved, verifier passed 36/36); Phase 4 planned (3 plans)
+Next step: `/kata-execute-phase 4`

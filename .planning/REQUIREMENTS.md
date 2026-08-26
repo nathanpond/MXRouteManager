@@ -17,16 +17,16 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **CONF-01**: API key is saved to, read from, and deletable from the macOS Keychain via a KeychainService (Security framework, no third-party deps)
 - [x] **CONF-02**: Server hostname (X-Server) and DirectAdmin username (X-Username) persist via @AppStorage, exposed through an observable settings model with an "is configured" state
 - [x] **CONF-03**: Settings UI provides a SecureField for the API key and fields for server + username; the key is written to the Keychain on commit
-- [ ] **CONF-04**: A Test Connection action calls `GET /domains` and reports success (domain count) or a decoded API error
+- [x] **CONF-04**: A Test Connection action calls `GET /domains` and reports success (domain count) or a decoded API error
 
 ### API Client
 
-- [ ] **API-01**: MXRouteClient (async/await URLSession) authenticates every request with X-API-Key, X-Server, and X-Username headers, reading the key from the Keychain
-- [ ] **API-02**: Codable models (EmailAccount, Forwarder) and success/error envelope decoding map failures to a typed MXRouteError
-- [ ] **API-03**: `listDomains()` returns the account's domain names
-- [ ] **API-04**: `listEmailAccounts(domain:)` returns the email accounts for a domain
-- [ ] **API-05**: `createForwarder(domain:alias:destinations:)` creates a forwarder and surfaces API validation errors
-- [ ] **API-06**: Unit tests cover auth headers, envelope decoding, and error mapping via a URLProtocol mock
+- [x] **API-01**: MXRouteClient (async/await URLSession) authenticates every request with X-API-Key, X-Server, and X-Username headers, reading the key from the Keychain
+- [x] **API-02**: Codable models (EmailAccount, Forwarder) and success/error envelope decoding map failures to a typed MXRouteError
+- [x] **API-03**: `listDomains()` returns the account's domain names
+- [x] **API-04**: `listEmailAccounts(domain:)` returns the email accounts for a domain
+- [x] **API-05**: `createForwarder(domain:alias:destinations:)` creates a forwarder and surfaces API validation errors
+- [x] **API-06**: Unit tests cover auth headers, envelope decoding, and error mapping via a URLProtocol mock
 
 ### Create-Forwarder UI
 
@@ -72,13 +72,13 @@ Which phases cover which requirements. Updated during roadmap creation.
 | CONF-01 | Phase 2 | Complete |
 | CONF-02 | Phase 2 | Complete |
 | CONF-03 | Phase 2 | Complete |
-| CONF-04 | Phase 3 | Pending |
-| API-01 | Phase 3 | Pending |
-| API-02 | Phase 3 | Pending |
-| API-03 | Phase 3 | Pending |
-| API-04 | Phase 3 | Pending |
-| API-05 | Phase 3 | Pending |
-| API-06 | Phase 3 | Pending |
+| CONF-04 | Phase 3 | Complete |
+| API-01 | Phase 3 | Complete |
+| API-02 | Phase 3 | Complete |
+| API-03 | Phase 3 | Complete |
+| API-04 | Phase 3 | Complete |
+| API-05 | Phase 3 | Complete |
+| API-06 | Phase 3 | Complete |
 | UI-01 | Phase 4 | Pending |
 | UI-02 | Phase 4 | Pending |
 | UI-03 | Phase 4 | Pending |
@@ -94,4 +94,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-08-25*
-*Last updated: 2026-08-26 after Phase 2 completion*
+*Last updated: 2026-08-26 after Phase 3 completion*

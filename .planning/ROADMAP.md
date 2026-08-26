@@ -14,27 +14,7 @@ A lightweight macOS menu bar app (SwiftUI MenuBarExtra) for creating MXRoute ema
 
 - [x] Phase 1: App Shell & Foundation (2/2 plans) — completed 2026-08-25
 - [x] Phase 2: Credentials & Configuration (3/3 plans) — completed 2026-08-26
-
-### Phase 3: MXRoute API Client
-
-**Goal:** A tested async API client that authenticates with the stored credentials and covers domains, email accounts, and forwarder creation.
-**Demo:** Press Test Connection in Settings with valid credentials — it reports the number of domains; with a bad key it shows the decoded API error message.
-**Requirements:** API-01, API-02, API-03, API-04, API-05, API-06, CONF-04
-**Plans:** 4 plans
-
-**Plans:**
-- [ ] 03-01: Network entitlement, API models, and typed error envelope (API-02)
-- [ ] 03-02: MXRouteClient core, listDomains, and the URLProtocol mock harness (API-01, API-03, API-06)
-- [ ] 03-03: listEmailAccounts and createForwarder with endpoint tests (API-04, API-05, API-06)
-- [ ] 03-04: Test Connection in Settings + real-API demo checkpoint (CONF-04)
-
-**Success Criteria:**
-1. MXRouteClient sends X-API-Key (from Keychain), X-Server, and X-Username headers on every request to https://api.mxroute.com
-2. `listDomains()`, `listEmailAccounts(domain:)`, and `createForwarder(domain:alias:destinations:)` decode the `{success, data}` envelope; failures map to a typed MXRouteError carrying the API's code/message
-3. Test Connection in Settings calls `listDomains()` and reports success or the decoded error
-4. URLProtocol-mocked unit tests pass for auth headers, decoding, and error mapping
-
----
+- [x] Phase 3: MXRoute API Client (4/4 plans) — completed 2026-08-26
 
 ### Phase 4: Create-Forwarder UI
 
@@ -75,8 +55,8 @@ A lightweight macOS menu bar app (SwiftUI MenuBarExtra) for creating MXRoute ema
 
 | Milestone | Phases | Plans | Status      | Shipped |
 | --------- | ------ | ----- | ----------- | ------- |
-| v1.0.0    | 5 (2 ✓) | 5     | In Progress | —       |
+| v1.0.0    | 5 (3 ✓) | 12    | In Progress | —       |
 
 ---
 *Roadmap created: 2026-08-25*
-*Last updated: 2026-08-26 — Phase 2 completed and verified*
+*Last updated: 2026-08-26 — Phase 3 completed and verified; Phase 4 planned*
