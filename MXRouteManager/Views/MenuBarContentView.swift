@@ -14,6 +14,7 @@ struct MenuBarContentView: View {
     @FocusState private var aliasFocused: Bool
 
     var body: some View {
+        @Bindable var model = model
         VStack(alignment: .leading, spacing: 12) {
             Text("New Forwarder")
                 .font(.headline)
@@ -34,10 +35,122 @@ struct MenuBarContentView: View {
             guard settings.isConfigured else { return }
             await model.loadDomains()
         }
+        .task(id: model.selectedDomain) {
+            guard settings.isConfigured else { return }
+            await model.loadAccounts(for: model.selectedDomain)
+        }
+        .onChange(of: model.domains) {
+            if case .loaded(let domains) = model.domains, !domains.isEmpty, model.submitState == .idle {
+                aliasFocused = true
+            }
+        }
     }
 
-    // replaced in Task 2
-    private var formSection: some View { EmptyView() }
+    private var formSection: some View {
+        @Bindable var model = model
+        return VStack(alignment: .leading, spacing: 12) {
+            domainField
+            aliasField
+            destinationField
+        }
+    }
+
+    private var domainField: some View {
+        @Bindable var model = model
+        return VStack(alignment: .leading, spacing: 4) {
+            Label("Domain", systemImage: "globe")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+            switch model.domains {
+            case .idle, .loading:
+                HStack(spacing: 6) {
+                    ProgressView().controlSize(.small)
+                    Text("Loading domains…").font(.caption).foregroundStyle(.secondary)
+                }
+            case .failed(let message):
+                VStack(alignment: .leading, spacing: 6) {
+                    Text(message).font(.caption).foregroundStyle(.red)
+                    Button {
+                        Task { await model.loadDomains(force: true) }
+                    } label: {
+                        Label("Retry", systemImage: "arrow.clockwise")
+                    }
+                    .controlSize(.small)
+                }
+            case .loaded(let domains) where domains.isEmpty:
+                Text("No domains on this account.").font(.caption).foregroundStyle(.secondary)
+            case .loaded(let domains):
+                Picker("Domain", selection: $model.selectedDomain) {
+                    ForEach(domains, id: \.self) { Text($0).tag($0) }
+                }
+                .labelsHidden()
+                .pickerStyle(.menu)
+            }
+        }
+    }
+
+    private var aliasField: some View {
+        @Bindable var model = model
+        return VStack(alignment: .leading, spacing: 4) {
+            Label("Alias", systemImage: "at")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+            TextField("sales", text: $model.aliasInput)
+                .textFieldStyle(.roundedBorder)
+                .autocorrectionDisabled()
+                .focused($aliasFocused)
+                .onSubmit { if model.canSubmit { Task { await model.submit() } } }
+
+            Group {
+                if let reason = model.aliasValidation.errorReason {
+                    Text(reason).foregroundStyle(.red)
+                } else if let address = model.previewAddress {
+                    Text(address).foregroundStyle(.secondary)
+                } else {
+                    Text(" ")
+                }
+            }
+            .font(.caption)
+            .lineLimit(1)
+            .truncationMode(.middle)
+        }
+    }
+
+    private var destinationField: some View {
+        @Bindable var model = model
+        return VStack(alignment: .leading, spacing: 4) {
+            Label("Forward to", systemImage: "tray.and.arrow.down")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+            switch model.accounts {
+            case .idle:
+                Text("Choose a domain first.").font(.caption).foregroundStyle(.secondary)
+            case .loading:
+                HStack(spacing: 6) {
+                    ProgressView().controlSize(.small)
+                    Text("Loading mailboxes…").font(.caption).foregroundStyle(.secondary)
+                }
+            case .failed(let message):
+                VStack(alignment: .leading, spacing: 6) {
+                    Text(message).font(.caption).foregroundStyle(.red)
+                    Button {
+                        Task { await model.loadAccounts(for: model.selectedDomain, force: true) }
+                    } label: {
+                        Label("Retry", systemImage: "arrow.clockwise")
+                    }
+                    .controlSize(.small)
+                }
+            case .loaded(let accounts) where accounts.isEmpty:
+                Text("No mailboxes on this domain.").font(.caption).foregroundStyle(.secondary)
+            case .loaded(let accounts):
+                Picker("Forward to", selection: $model.selectedDestination) {
+                    ForEach(accounts) { Text($0.email).tag($0.email) }
+                }
+                .labelsHidden()
+                .pickerStyle(.menu)
+            }
+        }
+    }
 
     // replaced in Task 3
     private var actionSection: some View { EmptyView() }
