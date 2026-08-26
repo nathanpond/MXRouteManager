@@ -78,3 +78,7 @@ scripts/generate-appicon.swift   regenerates the app icon PNGs
 ## Development
 
 The app icon is generated, not hand-drawn: `swift scripts/generate-appicon.swift` re-renders every PNG in `Assets.xcassets/AppIcon.appiconset` plus its `Contents.json`, so icon changes are edits to that script. Tests are Swift Testing (`@Test`), run with the command above. The project was built phase by phase with the Kata workflow; `.planning/ROADMAP.md` and `.planning/phases/` hold the plans and verification records if you want the history.
+
+## License
+
+[MIT](LICENSE)
