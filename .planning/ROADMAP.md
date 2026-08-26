@@ -22,7 +22,12 @@ A lightweight macOS menu bar app (SwiftUI MenuBarExtra) for creating MXRoute ema
 **Goal:** The app is presentable and ready for daily use from a Release build.
 **Demo:** Delete credentials, relaunch — the popover routes to Settings with guidance; restore credentials, build Release, and use the app icon-adorned build daily.
 **Requirements:** POL-01, POL-02
-**Plans:** TBD
+**Plans:** 3 plans
+
+**Plans:**
+- [ ] 05-01: First-run guidance and empty states (POL-01)
+- [ ] 05-02: App icon generation and asset catalog (POL-02)
+- [ ] 05-03: README, Release build, and phase demo (POL-02)
 
 **Success Criteria:**
 1. Unconfigured launch routes the user to Settings with clear guidance; empty domains/accounts show helpful messaging
