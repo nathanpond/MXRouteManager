@@ -41,7 +41,12 @@ A lightweight macOS menu bar app (SwiftUI MenuBarExtra) for creating MXRoute ema
 **Goal:** The core flow works end-to-end and looks sleek: domain → alias → destination → create.
 **Demo:** Click the menu bar icon, pick a domain, type "sales", pick a destination account, press Create — a confirmation shows `sales@domain → destination`, and the forwarder exists in MXRoute.
 **Requirements:** UI-01, UI-02, UI-03, UI-04, UI-05
-**Plans:** TBD
+**Plans:** 3 plans
+
+**Plans:**
+- [ ] 04-01: Alias validator and the create-forwarder state model (UI-02)
+- [ ] 04-02: Popover flow — domain, alias, destination, create (UI-01, UI-02, UI-03, UI-04)
+- [ ] 04-03: Visual design pass + live create checkpoint (UI-05)
 
 **Success Criteria:**
 1. Domain dropdown loads asynchronously on popover open with loading, error, and retry states
