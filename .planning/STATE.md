@@ -5,17 +5,17 @@
 See: .planning/PROJECT.md (updated 2026-08-25)
 
 **Core value:** Creating a new email forwarder takes under ten seconds from clicking the menu bar icon.
-**Current focus:** Phase 5 — Polish & Release (executing)
+**Current focus:** Phase 5 — Polish & Release (execution complete)
 
 ## Current Position
 
-Phase: 5 of 5, Plans 1-2 of 3 complete (first-run/empty states + app icon, parallel wave)
-Plan: 05-03 next
-Status: Phase 5 in progress
-Last activity: 2026-08-26 — Wave 1 complete (05-01, 05-02 in parallel, no conflicts)
+Phase: 5 of 5, Plan 3 of 3 complete
+Plan: —
+Status: Phase 5 execution complete — awaiting phase verification
+Last activity: 2026-08-26 — Completed 05-03-PLAN.md (checkpoint approved after Open Settings fix)
 
 Progress: Phases: ████░ 4/5 complete
-Phase 5: ██░ 2/3 plans
+Phase 5: ███ 3/3 plans
 
 ## Accumulated Context
 
@@ -35,6 +35,7 @@ Phase 5: ██░ 2/3 plans
 - `send()` checks HTTP status before attempting envelope decode, so a non-JSON 5xx maps to `.api(code: HTTP_5xx, ...)` rather than `.decoding`; 401 always maps to `.unauthorized` even when the body decodes with a different code
 - `listEmailAccounts(domain:)` sorts by email in the client (not the view); `createForwarder(domain:alias:destinations:)` synthesizes a local `Forwarder` when the API's documented bodiless 201 makes `send()` return `nil`, so a successful create is never reported as a decoding failure
 - Swift Testing's `@Suite(.serialized)` only serializes tests *within* one suite — two suites sharing `MockURLProtocol.handler` (a `nonisolated(unsafe) static`) can still run concurrently and clobber each other's mock responses. Fixed with an actor-backed `MockNetworkLock`/`withMockNetwork { }` helper in `MockURLProtocol.swift`; every test that sets the handler, in every suite, must wrap its body in `withMockNetwork { }`
+- Programmatic `@Environment(\.openSettings)` action for prominent Settings buttons — `SettingsLink` + `.buttonStyle(.borderedProminent)` + `.simultaneousGesture(TapGesture()...)` silently swallows the action (the tap gesture wins gesture arbitration), so a prominent Settings button needs the environment action plus `NSApplication.shared.activate()` in the same handler instead
 
 ### Blockers
 
@@ -46,5 +47,5 @@ Issue count: 0 (see .planning/issues/open/)
 
 ## Session Continuity
 
-Last session: 2026-08-26 — Phase 5 wave 1 executed (05-01 first-run/empty states, 05-02 app icon — parallel)
-Next step: Execute plan 05-03 (README, Release build, final checkpoint)
+Last session: 2026-08-26 — Completed 05-03-PLAN.md (checkpoint approved after Open Settings fix)
+Next step: Phase 5 verification, then milestone audit/completion
