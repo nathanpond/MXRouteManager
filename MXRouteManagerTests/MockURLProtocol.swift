@@ -76,3 +76,52 @@ extension URLRequest {
         return data
     }
 }
+
+/// Serializes every test that touches `MockURLProtocol.handler`, across
+/// BOTH suites that share it (`MXRouteClientTests` from plan 03-02 and
+/// `MXRouteEndpointTests` from plan 03-03). `@Suite(.serialized)` only
+/// serializes tests *within* one suite — Swift Testing still runs
+/// different suites concurrently by default, and `handler` is
+/// `nonisolated(unsafe) static`, so two suites running at once stomp on
+/// each other's mock responses (one test's request can arrive after a
+/// different, concurrently-running test has already replaced the
+/// handler). This actor-backed async lock makes every such test run one at
+/// a time, suite membership aside.
+actor MockNetworkLock {
+    static let shared = MockNetworkLock()
+    private var isLocked = false
+    private var waiters: [CheckedContinuation<Void, Never>] = []
+
+    func acquire() async {
+        if !isLocked {
+            isLocked = true
+            return
+        }
+        await withCheckedContinuation { waiters.append($0) }
+    }
+
+    func release() {
+        if waiters.isEmpty {
+            isLocked = false
+        } else {
+            waiters.removeFirst().resume()
+        }
+    }
+}
+
+/// Runs `body` while holding `MockNetworkLock`, releasing it whether
+/// `body` throws or returns normally. Every `@Test` that sets
+/// `MockURLProtocol.handler` must wrap its body in this rather than
+/// setting the handler at the top level, or it can race a test in the
+/// other suite.
+func withMockNetwork<T: Sendable>(_ body: () async throws -> T) async rethrows -> T {
+    await MockNetworkLock.shared.acquire()
+    do {
+        let result = try await body()
+        await MockNetworkLock.shared.release()
+        return result
+    } catch {
+        await MockNetworkLock.shared.release()
+        throw error
+    }
+}
