@@ -9,12 +9,12 @@ See: .planning/PROJECT.md (updated 2026-08-25)
 
 ## Current Position
 
-Phase: 1 of 5 (App Shell & Foundation) — Plan 1 of 2 complete
-Plan: 01-01 done; 01-02 next
-Status: Phase 1 in progress
-Last activity: 2026-08-25 — 01-01 executed: macOS 15 deployment target, LSUIElement, SwiftData template removed, App/Models/Services/Views structure created, MenuBarExtra shell (.window style) with placeholder popover built and verified (clean build succeeded, LSUIElement=true, LSMinimumSystemVersion=15.0)
+Phase: 1 of 5 (App Shell & Foundation) — Plan 2 of 2 complete
+Plan: 01-01 done; 01-02 done
+Status: Phase 1 execution complete — awaiting phase verification
+Last activity: 2026-08-25 — Completed 01-02-PLAN.md (checkpoint approved)
 
-Progress: Phase 1: █░ 1/2 plans
+Progress: Phase 1: ██ 2/2 plans
 
 ## Accumulated Context
 
@@ -37,5 +37,5 @@ Issue count: 0 (see .planning/issues/open/)
 
 ## Session Continuity
 
-Last session: 2026-08-25 — executed 01-01-PLAN.md (MenuBarExtra shell): 3 tasks, 3 commits, build verified green
-Next step: Execute 01-02-PLAN.md (Settings scene + SettingsLink)
+Last session: 2026-08-25 — executed 01-02-PLAN.md (Settings scene + SettingsLink): 2 auto tasks + 1 human-verify checkpoint, all six manual demo steps confirmed by user, build verified green
+Next step: Run Phase 1 verification, then proceed to Phase 2 planning
