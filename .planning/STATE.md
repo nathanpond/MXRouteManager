@@ -9,13 +9,13 @@ See: .planning/PROJECT.md (updated 2026-08-25)
 
 ## Current Position
 
-Phase: 3 of 5, Plan 2 of 4 complete (MXRouteClient core + listDomains)
-Plan: 03-02 complete
+Phase: 3 of 5, Plan 3 of 4 complete (listEmailAccounts + createForwarder endpoints)
+Plan: 03-03 complete
 Status: Phase 3 in progress
-Last activity: 2026-08-26 — Plan 03-02 executed; MXRouteClient core, MockURLProtocol harness, and client tests added with no deviations (29/29 tests green)
+Last activity: 2026-08-26 — Plan 03-03 executed; listEmailAccounts(domain:) and createForwarder(domain:alias:destinations:) added to MXRouteClient with endpoint tests (41/41 tests green); one auto-fixed deviation (cross-suite MockURLProtocol race, closed with an actor-backed lock)
 
 Progress: Phases: ██░░░ 2/5 complete
-Phase 3: ██░░ 2/4 plans
+Phase 3: ███░ 3/4 plans
 
 ## Accumulated Context
 
@@ -33,6 +33,8 @@ Phase 3: ██░░ 2/4 plans
 - Before running `xcodebuild test`, kill any running MXRouteManager.app instance (checkpoint leftovers block the test-host launch: "test runner hung before establishing connection")
 - MXRouteClient credentials are a plain trimmed/validated value snapshot (`MXRouteCredentials`), not a stored provider closure over `AppSettings` — keeps the client `Sendable` and free of actor-isolation coupling; injectable `session`/`baseURL` (no `#if DEBUG` hooks) let tests mock the network via a session-scoped `URLProtocol`
 - `send()` checks HTTP status before attempting envelope decode, so a non-JSON 5xx maps to `.api(code: HTTP_5xx, ...)` rather than `.decoding`; 401 always maps to `.unauthorized` even when the body decodes with a different code
+- `listEmailAccounts(domain:)` sorts by email in the client (not the view); `createForwarder(domain:alias:destinations:)` synthesizes a local `Forwarder` when the API's documented bodiless 201 makes `send()` return `nil`, so a successful create is never reported as a decoding failure
+- Swift Testing's `@Suite(.serialized)` only serializes tests *within* one suite — two suites sharing `MockURLProtocol.handler` (a `nonisolated(unsafe) static`) can still run concurrently and clobber each other's mock responses. Fixed with an actor-backed `MockNetworkLock`/`withMockNetwork { }` helper in `MockURLProtocol.swift`; every test that sets the handler, in every suite, must wrap its body in `withMockNetwork { }`
 
 ### Blockers
 
@@ -44,5 +46,5 @@ Issue count: 0 (see .planning/issues/open/)
 
 ## Session Continuity
 
-Last session: 2026-08-26 — Plan 03-02 executed (MXRouteClient core, MockURLProtocol harness, client tests; 29/29 green, no deviations)
-Next step: Execute plan 03-03
+Last session: 2026-08-26 — Plan 03-03 executed (listEmailAccounts, createForwarder, endpoint tests; 41/41 green; one auto-fixed deviation for a cross-suite MockURLProtocol race)
+Next step: Execute plan 03-04 (Test Connection + checkpoint)
