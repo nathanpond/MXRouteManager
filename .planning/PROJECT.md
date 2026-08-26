@@ -8,19 +8,27 @@ A lightweight macOS menu bar app (SwiftUI `MenuBarExtra`) for creating MXRoute e
 
 Creating a new email forwarder takes under ten seconds from clicking the menu bar icon.
 
+## Current State (v1.0.0, shipped 2026-08-26)
+
+The app is complete and in daily use from a Release build installed at /Applications/MXRouteManager.app. All v1 requirements shipped and validated: menu-bar-only shell, Keychain-backed credentials with Settings + Test Connection, fully tested API client, the under-ten-second create-forwarder flow, first-run guidance, app icon, README. 55 unit tests green; tagged v1.0.0.
+
+## Next Milestone Goals
+
+Not yet defined — run `/kata-add-milestone` to scope v1.1. Leading candidates from the v2 backlog: forwarder list/delete (MGMT-01), free-text external destinations (MGMT-02), launch-at-login (MGMT-03).
+
 ## Requirements
 
 ### Validated
 
-(None yet — ship to validate)
+- ✓ Menu-bar-only app (no Dock icon) with a compact popover UI, macOS 15+ — v1.0.0
+- ✓ MXRoute API client for domains, email accounts, and forwarders — v1.0.0
+- ✓ API key stored in the macOS Keychain via KeychainService; server hostname and username configurable in Settings — v1.0.0
+- ✓ Create-forwarder flow: domain dropdown → alias field → destination account picker → create — v1.0.0 (human-timed under ten seconds)
+- ✓ Clean, sleek native UI (materials, SF Symbols, light/dark) — v1.0.0
 
 ### Active
 
-- [ ] Menu-bar-only app (no Dock icon) with a compact popover UI, macOS 15+
-- [ ] MXRoute API client for domains, email accounts, and forwarders
-- [ ] API key stored in the macOS Keychain via KeychainService; server hostname and username configurable in Settings
-- [ ] Create-forwarder flow: domain dropdown → alias field → destination account picker → create
-- [ ] Clean, sleek native UI (materials, SF Symbols, light/dark)
+(None — between milestones)
 
 ### Out of Scope
 
@@ -32,7 +40,7 @@ Creating a new email forwarder takes under ten seconds from clicking the menu ba
 
 ## Context
 
-- Fresh Xcode project (SwiftData template to be replaced). Repo: https://github.com/nathanpond/MXRouteManager (private).
+- Xcode project (template replaced in Phase 1). Repo: https://github.com/nathanpond/MXRouteManager (private).
 - MXRoute API: `https://api.mxroute.com` (OpenAPI at `/openapi.yaml`). Auth via three headers: `X-API-Key` (secret), `X-Server` (mail server hostname, e.g. `eagle.mxlogin.com`), `X-Username` (DirectAdmin username). API keys are created at panel.mxroute.com/api-keys.php.
 - Response envelope: `{success, data}` on success, `{success, error: {code, message, field}}` on failure.
 - Endpoints used: `GET /domains` (also serves as credential test), `GET /domains/{domain}/email-accounts`, `POST /domains/{domain}/forwarders` with `{alias, destinations: [String]}`.
@@ -47,10 +55,10 @@ Creating a new email forwarder takes under ten seconds from clicking the menu ba
 
 | Decision | Rationale | Outcome |
 | -------- | --------- | -------- |
-| Create-only MVP (no forwarder list/delete) | Core value is fast creation; management exists in panel | — Pending |
-| Destination picker limited to accounts on the selected domain | One API call, simplest flow | — Pending |
-| API key in Keychain; X-Server/X-Username in @AppStorage | Only the key is secret | — Pending |
-| macOS 15 minimum | Personal machines are current; newest SwiftUI APIs | — Pending |
+| Create-only MVP (no forwarder list/delete) | Core value is fast creation; management exists in panel | ✓ Good |
+| Destination picker limited to accounts on the selected domain | One API call, simplest flow | ✓ Good |
+| API key in Keychain; X-Server/X-Username in @AppStorage | Only the key is secret | ✓ Good |
+| macOS 15 minimum | Personal machines are current; newest SwiftUI APIs | ✓ Good |
 
 ---
-*Last updated: 2026-08-25 after project initialization*
+*Last updated: 2026-08-26 after v1.0.0 milestone completion*
