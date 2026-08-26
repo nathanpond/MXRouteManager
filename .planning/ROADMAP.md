@@ -20,7 +20,13 @@ A lightweight macOS menu bar app (SwiftUI MenuBarExtra) for creating MXRoute ema
 **Goal:** A tested async API client that authenticates with the stored credentials and covers domains, email accounts, and forwarder creation.
 **Demo:** Press Test Connection in Settings with valid credentials — it reports the number of domains; with a bad key it shows the decoded API error message.
 **Requirements:** API-01, API-02, API-03, API-04, API-05, API-06, CONF-04
-**Plans:** TBD
+**Plans:** 4 plans
+
+**Plans:**
+- [ ] 03-01: Network entitlement, API models, and typed error envelope (API-02)
+- [ ] 03-02: MXRouteClient core, listDomains, and the URLProtocol mock harness (API-01, API-03, API-06)
+- [ ] 03-03: listEmailAccounts and createForwarder with endpoint tests (API-04, API-05, API-06)
+- [ ] 03-04: Test Connection in Settings + real-API demo checkpoint (CONF-04)
 
 **Success Criteria:**
 1. MXRouteClient sends X-API-Key (from Keychain), X-Server, and X-Username headers on every request to https://api.mxroute.com
