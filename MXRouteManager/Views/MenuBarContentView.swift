@@ -47,10 +47,10 @@ struct MenuBarContentView: View {
 
     private var header: some View {
         HStack(spacing: 7) {
-            Image(systemName: "arrow.turn.down.right")
+            Image(systemName: settings.isConfigured ? "arrow.turn.down.right" : "envelope.badge")
                 .font(.system(size: 12, weight: .semibold))
                 .foregroundStyle(.tint)
-            Text("New Forwarder")
+            Text(settings.isConfigured ? "New Forwarder" : "MXRoute Manager")
                 .font(.headline)
             Spacer()
         }
@@ -232,12 +232,60 @@ struct MenuBarContentView: View {
     }
 
     private var unconfiguredSection: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Label("Add your MXRoute credentials to get started.", systemImage: "key")
+        VStack(alignment: .leading, spacing: 12) {
+            Text("Create MXRoute email forwarders straight from the menu bar.")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
-            SettingsLink { Text("Open Settings…") }
-                .simultaneousGesture(TapGesture().onEnded { NSApplication.shared.activate() })
+                .fixedSize(horizontal: false, vertical: true)
+
+            VStack(alignment: .leading, spacing: 7) {
+                setupStep(1) {
+                    Text("Create an API key at ")
+                    + Text("panel.mxroute.com/api-keys.php").font(.system(.caption, design: .monospaced))
+                }
+                setupStep(2) {
+                    Text("Copy the server and username shown on that page")
+                }
+                setupStep(3) {
+                    Text("Paste all three into Settings and save")
+                }
+            }
+
+            SettingsLink {
+                Label("Open Settings…", systemImage: "gearshape")
+            }
+            .buttonStyle(.borderedProminent)
+            .simultaneousGesture(TapGesture().onEnded { NSApplication.shared.activate() })
+        }
+    }
+
+    private func setupStep<Content: View>(_ number: Int, @ViewBuilder _ text: () -> Content) -> some View {
+        HStack(alignment: .firstTextBaseline, spacing: 7) {
+            Text("\(number)")
+                .font(.system(.caption, design: .rounded).weight(.semibold))
+                .foregroundStyle(.tint)
+                .frame(width: 12, alignment: .trailing)
+            text()
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+    }
+
+    private func emptyState(_ message: String, hint: String, reload: @escaping () -> Void) -> some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Label(message, systemImage: "info.circle")
+                .font(.caption.weight(.medium))
+                .foregroundStyle(.secondary)
+                .imageScale(.small)
+            Text(hint)
+                .font(.caption)
+                .foregroundStyle(.secondary)
+                .fixedSize(horizontal: false, vertical: true)
+            Button(action: reload) {
+                Label("Reload", systemImage: "arrow.clockwise")
+            }
+            .controlSize(.small)
         }
     }
 
