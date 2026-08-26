@@ -19,7 +19,12 @@ A lightweight macOS menu bar app (SwiftUI MenuBarExtra) for creating MXRoute ema
 **Goal:** The user can configure and persist all three MXRoute credentials, with the API key held only in the Keychain.
 **Demo:** Open Settings, paste an API key into a secure field, enter server hostname and username, quit and relaunch — values persist and the key is visible in Keychain Access, not in UserDefaults.
 **Requirements:** CONF-01, CONF-02, CONF-03
-**Plans:** TBD
+**Plans:** 3 plans
+
+**Plans:**
+- [ ] 02-01-PLAN.md — KeychainService: save/load/delete the API key via Security framework, with round-trip tests
+- [ ] 02-02-PLAN.md — AppSettings observable model: @AppStorage server/username, hasAPIKey, isConfigured, injected into both scenes
+- [ ] 02-03-PLAN.md — Settings UI: SecureField + server/username fields committing to Keychain and @AppStorage, plus demo verification
 
 **Success Criteria:**
 1. KeychainService saves, loads, and deletes the API key using the Security framework (no third-party deps)
