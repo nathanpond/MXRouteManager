@@ -9,13 +9,13 @@ See: .planning/PROJECT.md (updated 2026-08-25)
 
 ## Current Position
 
-Phase: 4 of 5, Plan 1 of 3 complete (MXRoute API Client complete in Phase 3)
-Plan: 04-01 (AliasValidator + CreateForwarderModel) complete
+Phase: 4 of 5, Plan 2 of 3 complete (MXRoute API Client complete in Phase 3)
+Plan: 04-02 (popover create-forwarder flow) complete
 Status: Phase 4 in progress
-Last activity: 2026-08-26 — 04-01 executed: AliasValidator + CreateForwarderModel added, 55/55 tests passing
+Last activity: 2026-08-26 — 04-02 executed: MenuBarContentView rebuilt as the working create-forwarder flow, 55/55 tests passing
 
 Progress: Phases: ███░░ 3/5 complete
-Phase 4: █░░ 1/3 plans
+Phase 4: ██░ 2/3 plans
 
 ## Accumulated Context
 
@@ -46,5 +46,5 @@ Issue count: 0 (see .planning/issues/open/)
 
 ## Session Continuity
 
-Last session: 2026-08-26 — Phase 3 executed and verified (4 plans, live-API checkpoint approved, verifier passed 36/36); Phase 4 planned (3 plans)
-Next step: `/kata-execute-phase 4`
+Last session: 2026-08-26 — Plan 04-02 executed: popover rebuilt as the full create-forwarder flow (domain/alias/destination/create/confirmation), 55/55 tests passing
+Next step: Execute plan 04-03 (design pass + checkpoint)
