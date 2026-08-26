@@ -9,8 +9,8 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### App Shell
 
-- [ ] **APP-01**: App runs as a menu-bar-only app (MenuBarExtra, `.window` style, no Dock icon) on macOS 15+
-- [ ] **APP-02**: Clicking the menu bar icon opens a compact popover with the app UI; project is structured into App/Models/Services/Views groups with a reachable Settings scene
+- [x] **APP-01**: App runs as a menu-bar-only app (MenuBarExtra, `.window` style, no Dock icon) on macOS 15+
+- [x] **APP-02**: Clicking the menu bar icon opens a compact popover with the app UI; project is structured into App/Models/Services/Views groups with a reachable Settings scene
 
 ### Configuration
 
@@ -67,8 +67,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| APP-01 | Phase 1 | Pending |
-| APP-02 | Phase 1 | Pending |
+| APP-01 | Phase 1 | Complete |
+| APP-02 | Phase 1 | Complete |
 | CONF-01 | Phase 2 | Pending |
 | CONF-02 | Phase 2 | Pending |
 | CONF-03 | Phase 2 | Pending |
@@ -94,4 +94,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-08-25*
-*Last updated: 2026-08-25 after initial definition*
+*Last updated: 2026-08-25 after Phase 1 completion*

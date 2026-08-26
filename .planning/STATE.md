@@ -5,16 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-08-25)
 
 **Core value:** Creating a new email forwarder takes under ten seconds from clicking the menu bar icon.
-**Current focus:** Phase 1 — App Shell & Foundation
+**Current focus:** Phase 2 — Credentials & Configuration (not yet planned)
 
 ## Current Position
 
-Phase: 1 of 5 (App Shell & Foundation) — Plan 2 of 2 complete
-Plan: 01-01 done; 01-02 done
-Status: Phase 1 execution complete — awaiting phase verification
-Last activity: 2026-08-25 — Completed 01-02-PLAN.md (checkpoint approved)
+Phase: 1 of 5 complete (App Shell & Foundation) — verified 8/8 must-haves, moved to completed/
+Plan: —
+Status: Ready for `/kata-plan-phase 2`
+Last activity: 2026-08-25 — Phase 1 verified (passed) and completed; GitHub issues #1/#6/#7 closed
 
-Progress: Phase 1: ██ 2/2 plans
+Progress: Phases: █░░░░ 1/5 complete
 
 ## Accumulated Context
 
@@ -37,5 +37,5 @@ Issue count: 0 (see .planning/issues/open/)
 
 ## Session Continuity
 
-Last session: 2026-08-25 — executed 01-02-PLAN.md (Settings scene + SettingsLink): 2 auto tasks + 1 human-verify checkpoint, all six manual demo steps confirmed by user, build verified green
-Next step: Run Phase 1 verification, then proceed to Phase 2 planning
+Last session: 2026-08-25 — Phase 1 executed and verified (2 plans, human checkpoint approved, verifier passed 8/8)
+Next step: `/kata-plan-phase 2`
