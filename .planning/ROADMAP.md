@@ -17,7 +17,11 @@ A lightweight macOS menu bar app (SwiftUI MenuBarExtra) for creating MXRoute ema
 **Goal:** The app lives in the menu bar as a compact popover with a clean project structure, ready to host features.
 **Demo:** Launch the app — no Dock icon appears; click the menu bar icon and a placeholder popover opens; open Settings from the popover.
 **Requirements:** APP-01, APP-02
-**Plans:** TBD
+**Plans:** 2 plans
+
+**Plans:**
+- [ ] 01-01-PLAN.md — macOS 15 target, LSUIElement, MenuBarExtra shell, template teardown and folder structure
+- [ ] 01-02-PLAN.md — Settings scene, SettingsLink in the popover, manual demo verification
 
 **Success Criteria:**
 1. App launches with no Dock icon (LSUIElement) and shows an SF Symbol icon in the menu bar
