@@ -9,13 +9,13 @@ See: .planning/PROJECT.md (updated 2026-08-25)
 
 ## Current Position
 
-Phase: 3 of 5, Plan 1 of 4 complete (network entitlement + API models)
-Plan: 03-01 complete
+Phase: 3 of 5, Plan 2 of 4 complete (MXRouteClient core + listDomains)
+Plan: 03-02 complete
 Status: Phase 3 in progress
-Last activity: 2026-08-26 — Plan 03-01 executed; test-runner hang root-caused and fixed (hasKey ACL prompt)
+Last activity: 2026-08-26 — Plan 03-02 executed; MXRouteClient core, MockURLProtocol harness, and client tests added with no deviations (29/29 tests green)
 
 Progress: Phases: ██░░░ 2/5 complete
-Phase 3: █░░░ 1/4 plans
+Phase 3: ██░░ 2/4 plans
 
 ## Accumulated Context
 
@@ -31,6 +31,8 @@ Phase 3: █░░░ 1/4 plans
 - `hasAPIKey` on `AppSettings` is a stored `Bool` mutated explicitly by `saveAPIKey`/`removeAPIKey`, not a computed pass-through to `KeychainService.hasKey` — keeps SwiftUI observation working and avoids a Keychain hit on every render
 - Keychain PRESENCE checks must be attributes-only (`kSecReturnAttributes`, never `kSecReturnData`) — reading secret data triggers the ACL prompt, and any signature/entitlement change re-invalidates prior approval, hanging app launch and the unit-test runner handshake. Secret reads happen only at point of use; first live API call per binary shows one prompt (user picks Always Allow)
 - Before running `xcodebuild test`, kill any running MXRouteManager.app instance (checkpoint leftovers block the test-host launch: "test runner hung before establishing connection")
+- MXRouteClient credentials are a plain trimmed/validated value snapshot (`MXRouteCredentials`), not a stored provider closure over `AppSettings` — keeps the client `Sendable` and free of actor-isolation coupling; injectable `session`/`baseURL` (no `#if DEBUG` hooks) let tests mock the network via a session-scoped `URLProtocol`
+- `send()` checks HTTP status before attempting envelope decode, so a non-JSON 5xx maps to `.api(code: HTTP_5xx, ...)` rather than `.decoding`; 401 always maps to `.unauthorized` even when the body decodes with a different code
 
 ### Blockers
 
@@ -42,5 +44,5 @@ Issue count: 0 (see .planning/issues/open/)
 
 ## Session Continuity
 
-Last session: 2026-08-26 — Phase 2 executed and verified (3 plans, human checkpoint approved, verifier passed 12/12)
-Next step: `/kata-plan-phase 3`
+Last session: 2026-08-26 — Plan 03-02 executed (MXRouteClient core, MockURLProtocol harness, client tests; 29/29 green, no deviations)
+Next step: Execute plan 03-03
