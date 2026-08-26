@@ -9,13 +9,13 @@ See: .planning/PROJECT.md (updated 2026-08-25)
 
 ## Current Position
 
-Phase: 3 of 5, Plan 3 of 4 complete (listEmailAccounts + createForwarder endpoints)
-Plan: 03-03 complete
-Status: Phase 3 in progress
-Last activity: 2026-08-26 — Plan 03-03 executed; listEmailAccounts(domain:) and createForwarder(domain:alias:destinations:) added to MXRouteClient with endpoint tests (41/41 tests green); one auto-fixed deviation (cross-suite MockURLProtocol race, closed with an actor-backed lock)
+Phase: 3 of 5, Plan 4 of 4 complete (Test Connection wired to Settings; checkpoint approved)
+Plan: 03-04 complete
+Status: Phase 3 execution complete — awaiting phase verification
+Last activity: 2026-08-26 — Completed 03-04-PLAN.md (checkpoint approved): Test Connection button added to SettingsView, verified end-to-end against the live MXRoute API (domain count, decoded bad-key error, keychain Always Allow, real key restored)
 
 Progress: Phases: ██░░░ 2/5 complete
-Phase 3: ███░ 3/4 plans
+Phase 3: ████ 4/4 plans
 
 ## Accumulated Context
 
@@ -46,5 +46,5 @@ Issue count: 0 (see .planning/issues/open/)
 
 ## Session Continuity
 
-Last session: 2026-08-26 — Plan 03-03 executed (listEmailAccounts, createForwarder, endpoint tests; 41/41 green; one auto-fixed deviation for a cross-suite MockURLProtocol race)
-Next step: Execute plan 03-04 (Test Connection + checkpoint)
+Last session: 2026-08-26 — Plan 03-04 executed and checkpoint approved (Test Connection wired to Settings; live-API demo confirmed: domain count, decoded bad-key error, keychain Always Allow, real key restored)
+Next step: Phase 3 verification, then /kata-plan-phase 4
