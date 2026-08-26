@@ -12,6 +12,7 @@ struct SettingsView: View {
     @State private var apiKeyInput: String = ""
     @State private var statusMessage: String?
     @State private var errorMessage: String?
+    @State private var isTesting = false
 
     var body: some View {
         @Bindable var settings = settings
@@ -47,6 +48,21 @@ struct SettingsView: View {
                 Text("API Key")
             } footer: {
                 Text("Create API keys at panel.mxroute.com/api-keys.php.")
+            }
+
+            Section {
+                HStack {
+                    Button("Test Connection") { testConnection() }
+                        .disabled(!settings.isConfigured || isTesting)
+                    if isTesting {
+                        ProgressView()
+                            .controlSize(.small)
+                            .padding(.leading, 4)
+                    }
+                    Spacer()
+                }
+            } footer: {
+                Text("Fetches your domain list from MXRoute to confirm the credentials work.")
             }
 
             Section {
@@ -89,6 +105,28 @@ struct SettingsView: View {
         } catch {
             statusMessage = nil
             errorMessage = "Could not remove the API key: \(error.localizedDescription)"
+        }
+    }
+
+    private func testConnection() {
+        settings.normalize()
+        isTesting = true
+        errorMessage = nil
+        statusMessage = "Testing connection…"
+
+        Task {
+            defer { isTesting = false }
+            do {
+                let client = MXRouteClient.live(settings: settings)
+                let domains = try await client.listDomains()
+                errorMessage = nil
+                statusMessage = domains.count == 1
+                    ? "Connected — 1 domain found."
+                    : "Connected — \(domains.count) domains found."
+            } catch {
+                statusMessage = nil
+                errorMessage = (error as? MXRouteError)?.errorDescription ?? error.localizedDescription
+            }
         }
     }
 }
