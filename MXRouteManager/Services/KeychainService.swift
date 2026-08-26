@@ -93,6 +93,15 @@ struct KeychainService {
     }
 
     var hasKey: Bool {
-        ((try? load()) ?? nil) != nil
+        // Attributes-only query: checking for the item's existence must never
+        // request kSecValueData — reading the secret triggers the keychain ACL
+        // prompt, and this runs at app launch (AppSettings.init), where a
+        // blocking dialog hangs both the UI and the unit-test runner handshake
+        // whenever the binary's signature/entitlements change.
+        var query = baseQuery
+        query[kSecReturnAttributes as String] = true
+        query[kSecMatchLimit as String] = kSecMatchLimitOne
+        var result: CFTypeRef?
+        return SecItemCopyMatching(query as CFDictionary, &result) == errSecSuccess
     }
 }
