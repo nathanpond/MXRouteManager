@@ -180,6 +180,40 @@ nonisolated struct MXRouteClient: Sendable {
         }
         return accounts.sorted { $0.email.localizedCaseInsensitiveCompare($1.email) == .orderedAscending }
     }
+
+    /// Creates a forwarder. The API declares a `201` with no response body,
+    /// so a `nil` result from `send` here means success, not failure — the
+    /// fallback below synthesizes the `Forwarder` the server would have
+    /// echoed rather than throwing on a request that actually succeeded.
+    @discardableResult
+    func createForwarder(domain: String, alias: String, destinations: [String]) async throws -> Forwarder {
+        let domain = domain.trimmingCharacters(in: .whitespacesAndNewlines)
+        let alias = alias.trimmingCharacters(in: .whitespacesAndNewlines)
+        let destinations = destinations
+            .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+            .filter { !$0.isEmpty }
+
+        guard !domain.isEmpty else { throw MXRouteError.invalidRequest(message: "Choose a domain for the forwarder.") }
+        guard !alias.isEmpty else { throw MXRouteError.invalidRequest(message: "Enter an alias for the forwarder.") }
+        guard !destinations.isEmpty else { throw MXRouteError.invalidRequest(message: "Choose at least one destination for the forwarder.") }
+
+        let body = try JSONEncoder().encode(CreateForwarderBody(alias: alias, destinations: destinations))
+        let created = try await send(
+            Forwarder.self,
+            method: "POST",
+            pathComponents: ["domains", domain, "forwarders"],
+            body: body
+        )
+        return created ?? Forwarder(alias: alias, email: "\(alias)@\(domain)", destinations: destinations)
+    }
+}
+
+/// The POST body for `createForwarder`. File-scope (not nested in the
+/// `nonisolated struct`) but still `nonisolated` itself, since it carries no
+/// actor-isolated state of its own.
+nonisolated private struct CreateForwarderBody: Encodable {
+    let alias: String
+    let destinations: [String]
 }
 
 @MainActor
