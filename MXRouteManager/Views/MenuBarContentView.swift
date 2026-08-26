@@ -108,7 +108,10 @@ struct MenuBarContentView: View {
                     .controlSize(.small)
                 }
             case .loaded(let domains) where domains.isEmpty:
-                Text("No domains on this account.").font(.caption).foregroundStyle(.secondary)
+                emptyState(
+                    "No domains on this account.",
+                    hint: "Check the server and username in Settings — they must match the MXRoute account that owns your domains."
+                ) { Task { await model.loadDomains(force: true) } }
             case .loaded(let domains):
                 Picker("Domain", selection: $model.selectedDomain) {
                     ForEach(domains, id: \.self) { Text($0).tag($0) }
@@ -175,7 +178,10 @@ struct MenuBarContentView: View {
                     .controlSize(.small)
                 }
             case .loaded(let accounts) where accounts.isEmpty:
-                Text("No mailboxes on this domain.").font(.caption).foregroundStyle(.secondary)
+                emptyState(
+                    "No mailboxes on this domain.",
+                    hint: "A forwarder needs a mailbox to deliver to. Create one at panel.mxroute.com, then reload."
+                ) { Task { await model.loadAccounts(for: model.selectedDomain, force: true) } }
             case .loaded(let accounts):
                 Picker("Forward to", selection: $model.selectedDestination) {
                     ForEach(accounts) { Text($0.email).tag($0.email) }
