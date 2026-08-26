@@ -30,11 +30,11 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Create-Forwarder UI
 
-- [ ] **UI-01**: Domain dropdown loads asynchronously on popover open with loading, error, and retry states
-- [ ] **UI-02**: Alias field validates the local part (non-empty, no spaces/@, allowed characters); Create is disabled until valid
-- [ ] **UI-03**: Destination picker lists email accounts on the selected domain, reloading when the domain changes, showing full addresses
-- [ ] **UI-04**: Create action submits with a progress state, shows a success confirmation (`alias@domain → destination`), surfaces API errors inline, and resets the form for the next entry
-- [ ] **UI-05**: Visual design pass: compact sleek layout, material background, SF Symbols, proper spacing/typography, light + dark
+- [x] **UI-01**: Domain dropdown loads asynchronously on popover open with loading, error, and retry states
+- [x] **UI-02**: Alias field validates the local part (non-empty, no spaces/@, allowed characters); Create is disabled until valid
+- [x] **UI-03**: Destination picker lists email accounts on the selected domain, reloading when the domain changes, showing full addresses
+- [x] **UI-04**: Create action submits with a progress state, shows a success confirmation (`alias@domain → destination`), surfaces API errors inline, and resets the form for the next entry
+- [x] **UI-05**: Visual design pass: compact sleek layout, material background, SF Symbols, proper spacing/typography, light + dark
 
 ### Polish
 
@@ -79,11 +79,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 | API-04 | Phase 3 | Complete |
 | API-05 | Phase 3 | Complete |
 | API-06 | Phase 3 | Complete |
-| UI-01 | Phase 4 | Pending |
-| UI-02 | Phase 4 | Pending |
-| UI-03 | Phase 4 | Pending |
-| UI-04 | Phase 4 | Pending |
-| UI-05 | Phase 4 | Pending |
+| UI-01 | Phase 4 | Complete |
+| UI-02 | Phase 4 | Complete |
+| UI-03 | Phase 4 | Complete |
+| UI-04 | Phase 4 | Complete |
+| UI-05 | Phase 4 | Complete |
 | POL-01 | Phase 5 | Pending |
 | POL-02 | Phase 5 | Pending |
 
@@ -94,4 +94,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-08-25*
-*Last updated: 2026-08-26 after Phase 3 completion*
+*Last updated: 2026-08-26 after Phase 4 completion*

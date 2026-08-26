@@ -5,17 +5,16 @@
 See: .planning/PROJECT.md (updated 2026-08-25)
 
 **Core value:** Creating a new email forwarder takes under ten seconds from clicking the menu bar icon.
-**Current focus:** Phase 4 — Create-Forwarder UI (in progress)
+**Current focus:** Phase 5 — Polish & Release (not yet planned)
 
 ## Current Position
 
-Phase: 4 of 5, Plan 3 of 3 complete (MXRoute API Client complete in Phase 3)
-Plan: 04-03 (visual design pass + live checkpoint) complete
-Status: Phase 4 execution complete — awaiting phase verification
-Last activity: 2026-08-26 — Completed 04-03-PLAN.md (checkpoint approved)
+Phase: 4 of 5 complete (Create-Forwarder UI) — verified 34/34 must-haves, moved to completed/
+Plan: —
+Status: Ready for `/kata-plan-phase 5`
+Last activity: 2026-08-26 — Phase 4 verified (passed) and completed; GitHub issues #4/#18-#22 closed
 
-Progress: Phases: ███░░ 3/5 complete
-Phase 4: ███ 3/3 plans
+Progress: Phases: ████░ 4/5 complete
 
 ## Accumulated Context
 
@@ -46,5 +45,5 @@ Issue count: 0 (see .planning/issues/open/)
 
 ## Session Continuity
 
-Last session: 2026-08-26 — Plan 04-03 executed: popover restyled as a native material-backed menu bar popover with SF Symbols and animated state; live checkpoint approved (real forwarder created and panel-verified, duplicate-alias error path, under-ten-seconds timing, Light+Dark clean), 55/55 tests passing
-Next step: Phase 4 verification, then /kata-plan-phase 5
+Last session: 2026-08-26 — Phase 4 executed and verified (3 plans, live create checkpoint approved, verifier passed 34/34)
+Next step: `/kata-plan-phase 5`
