@@ -5,16 +5,17 @@
 See: .planning/PROJECT.md (updated 2026-08-25)
 
 **Core value:** Creating a new email forwarder takes under ten seconds from clicking the menu bar icon.
-**Current focus:** Phase 4 — Create-Forwarder UI (planned, ready to execute)
+**Current focus:** Phase 4 — Create-Forwarder UI (in progress)
 
 ## Current Position
 
-Phase: 3 of 5 complete (MXRoute API Client) — verified 36/36 must-haves, moved to completed/
-Plan: —
-Status: Phase 4 planned (3 plans); ready for `/kata-execute-phase 4`
-Last activity: 2026-08-26 — Phase 3 verified and completed; GitHub issues #3/#11-#17 closed; Phase 4 planned
+Phase: 4 of 5, Plan 1 of 3 complete (MXRoute API Client complete in Phase 3)
+Plan: 04-01 (AliasValidator + CreateForwarderModel) complete
+Status: Phase 4 in progress
+Last activity: 2026-08-26 — 04-01 executed: AliasValidator + CreateForwarderModel added, 55/55 tests passing
 
 Progress: Phases: ███░░ 3/5 complete
+Phase 4: █░░ 1/3 plans
 
 ## Accumulated Context
 
