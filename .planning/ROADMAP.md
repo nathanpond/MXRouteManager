@@ -13,26 +13,7 @@ A lightweight macOS menu bar app (SwiftUI MenuBarExtra) for creating MXRoute ema
 **Goal:** Ship a menu bar app where a configured user can create an MXRoute email forwarder end-to-end in under ten seconds.
 
 - [x] Phase 1: App Shell & Foundation (2/2 plans) — completed 2026-08-25
-
-### Phase 2: Credentials & Configuration
-
-**Goal:** The user can configure and persist all three MXRoute credentials, with the API key held only in the Keychain.
-**Demo:** Open Settings, paste an API key into a secure field, enter server hostname and username, quit and relaunch — values persist and the key is visible in Keychain Access, not in UserDefaults.
-**Requirements:** CONF-01, CONF-02, CONF-03
-**Plans:** 3 plans
-
-**Plans:**
-- [ ] 02-01-PLAN.md — KeychainService: save/load/delete the API key via Security framework, with round-trip tests
-- [ ] 02-02-PLAN.md — AppSettings observable model: @AppStorage server/username, hasAPIKey, isConfigured, injected into both scenes
-- [ ] 02-03-PLAN.md — Settings UI: SecureField + server/username fields committing to Keychain and @AppStorage, plus demo verification
-
-**Success Criteria:**
-1. KeychainService saves, loads, and deletes the API key using the Security framework (no third-party deps)
-2. Server hostname and username persist via @AppStorage and are exposed through an observable settings model with an "is configured" state
-3. Settings UI offers a SecureField for the key plus fields for server and username; the key is written to the Keychain on commit
-4. The API key never appears in UserDefaults or on disk
-
----
+- [x] Phase 2: Credentials & Configuration (3/3 plans) — completed 2026-08-26
 
 ### Phase 3: MXRoute API Client
 
@@ -83,8 +64,8 @@ A lightweight macOS menu bar app (SwiftUI MenuBarExtra) for creating MXRoute ema
 
 | Milestone | Phases | Plans | Status      | Shipped |
 | --------- | ------ | ----- | ----------- | ------- |
-| v1.0.0    | 5 (1 ✓) | 2     | In Progress | —       |
+| v1.0.0    | 5 (2 ✓) | 5     | In Progress | —       |
 
 ---
 *Roadmap created: 2026-08-25*
-*Last updated: 2026-08-25 — Phase 1 completed and verified*
+*Last updated: 2026-08-26 — Phase 2 completed and verified*

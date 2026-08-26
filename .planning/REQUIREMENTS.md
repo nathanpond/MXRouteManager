@@ -14,9 +14,9 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Configuration
 
-- [ ] **CONF-01**: API key is saved to, read from, and deletable from the macOS Keychain via a KeychainService (Security framework, no third-party deps)
-- [ ] **CONF-02**: Server hostname (X-Server) and DirectAdmin username (X-Username) persist via @AppStorage, exposed through an observable settings model with an "is configured" state
-- [ ] **CONF-03**: Settings UI provides a SecureField for the API key and fields for server + username; the key is written to the Keychain on commit
+- [x] **CONF-01**: API key is saved to, read from, and deletable from the macOS Keychain via a KeychainService (Security framework, no third-party deps)
+- [x] **CONF-02**: Server hostname (X-Server) and DirectAdmin username (X-Username) persist via @AppStorage, exposed through an observable settings model with an "is configured" state
+- [x] **CONF-03**: Settings UI provides a SecureField for the API key and fields for server + username; the key is written to the Keychain on commit
 - [ ] **CONF-04**: A Test Connection action calls `GET /domains` and reports success (domain count) or a decoded API error
 
 ### API Client
@@ -69,9 +69,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 |-------------|-------|--------|
 | APP-01 | Phase 1 | Complete |
 | APP-02 | Phase 1 | Complete |
-| CONF-01 | Phase 2 | Pending |
-| CONF-02 | Phase 2 | Pending |
-| CONF-03 | Phase 2 | Pending |
+| CONF-01 | Phase 2 | Complete |
+| CONF-02 | Phase 2 | Complete |
+| CONF-03 | Phase 2 | Complete |
 | CONF-04 | Phase 3 | Pending |
 | API-01 | Phase 3 | Pending |
 | API-02 | Phase 3 | Pending |
@@ -94,4 +94,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-08-25*
-*Last updated: 2026-08-25 after Phase 1 completion*
+*Last updated: 2026-08-26 after Phase 2 completion*
