@@ -6,6 +6,10 @@ A macOS menu bar app for creating MXRoute email forwarders in seconds. Click the
 
 Clicking the menu bar icon opens a 320pt translucent popover. A Domain menu lists the domains on your MXRoute account; an Alias field shows a live `alias@domain` preview as you type, with inline validation if the alias is empty or contains invalid characters; a "Forward to" menu lists the mailboxes available on the selected domain; and a Create button submits the forwarder, followed by a short confirmation line once it succeeds.
 
+## Documentation
+
+Full docs live in [`docs/`](docs/Home.md): [Getting Started](docs/Getting-Started.md) · [Development](docs/Development.md) · [Architecture](docs/Architecture.md) · [Troubleshooting](docs/Troubleshooting.md). Release history in [CHANGELOG.md](CHANGELOG.md).
+
 ## Requirements
 
 - macOS 15 (Sequoia) or later
