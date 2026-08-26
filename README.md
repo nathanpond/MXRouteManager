@@ -8,7 +8,7 @@ Clicking the menu bar icon opens a 320pt translucent popover. A Domain menu list
 
 ## Documentation
 
-Full docs live in [`docs/`](docs/Home.md): [Getting Started](docs/Getting-Started.md) · [Development](docs/Development.md) · [Architecture](docs/Architecture.md) · [Troubleshooting](docs/Troubleshooting.md). Release history in [CHANGELOG.md](CHANGELOG.md).
+Full docs live in the [project wiki](https://github.com/nathanpond/MXRouteManager/wiki): [Getting Started](https://github.com/nathanpond/MXRouteManager/wiki/Getting-Started) · [Development](https://github.com/nathanpond/MXRouteManager/wiki/Development) · [Architecture](https://github.com/nathanpond/MXRouteManager/wiki/Architecture) · [Troubleshooting](https://github.com/nathanpond/MXRouteManager/wiki/Troubleshooting). Release history in [CHANGELOG.md](CHANGELOG.md).
 
 ## Requirements
 
