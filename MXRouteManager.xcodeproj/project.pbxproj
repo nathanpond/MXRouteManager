@@ -30,7 +30,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		62FCF090303E45F300255216 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		62FCF090303E45F300255216 /* Exceptions for "MXRouteManager" folder in "MXRouteManager" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Models/.gitkeep,
@@ -44,7 +44,7 @@
 		62FCF065303E45F200255216 /* MXRouteManager */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				62FCF090303E45F300255216 /* PBXFileSystemSynchronizedBuildFileExceptionSet */,
+				62FCF090303E45F300255216 /* Exceptions for "MXRouteManager" folder in "MXRouteManager" target */,
 			);
 			path = MXRouteManager;
 			sourceTree = "<group>";
