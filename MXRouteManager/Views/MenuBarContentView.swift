@@ -11,6 +11,7 @@ import AppKit
 struct MenuBarContentView: View {
     @Environment(AppSettings.self) private var settings
     @Environment(CreateForwarderModel.self) private var model
+    @Environment(\.openSettings) private var openSettings
     @FocusState private var aliasFocused: Bool
 
     var body: some View {
@@ -257,11 +258,16 @@ struct MenuBarContentView: View {
                 }
             }
 
-            SettingsLink {
+            // Programmatic openSettings action instead of SettingsLink: with
+            // .borderedProminent, a simultaneousGesture can win gesture
+            // arbitration and swallow SettingsLink's action entirely.
+            Button {
+                openSettings()
+                NSApplication.shared.activate()
+            } label: {
                 Label("Open Settings…", systemImage: "gearshape")
             }
             .buttonStyle(.borderedProminent)
-            .simultaneousGesture(TapGesture().onEnded { NSApplication.shared.activate() })
         }
     }
 
