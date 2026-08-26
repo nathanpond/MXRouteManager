@@ -20,8 +20,12 @@ struct MenuBarContentView: View {
                 .font(.headline)
 
             if settings.isConfigured {
-                formSection            // Task 2
-                actionSection          // Task 3
+                if case .succeeded = model.submitState {
+                    actionSection
+                } else {
+                    formSection
+                    actionSection
+                }
             } else {
                 unconfiguredSection
             }
@@ -152,8 +156,49 @@ struct MenuBarContentView: View {
         }
     }
 
-    // replaced in Task 3
-    private var actionSection: some View { EmptyView() }
+    @ViewBuilder
+    private var actionSection: some View {
+        switch model.submitState {
+        case .succeeded(let forwarder):
+            VStack(alignment: .leading, spacing: 8) {
+                Label("Forwarder created", systemImage: "checkmark.circle.fill")
+                    .symbolRenderingMode(.multicolor)
+                    .font(.subheadline.weight(.semibold))
+                Text("\(forwarder.email) → \(forwarder.destinations.first ?? model.selectedDestination)")
+                    .font(.callout)
+                    .textSelection(.enabled)
+                    .lineLimit(2)
+                Button("Create Another") {
+                    model.reset()
+                    aliasFocused = true
+                }
+                .keyboardShortcut(.defaultAction)
+            }
+        default:
+            VStack(alignment: .leading, spacing: 8) {
+                HStack(spacing: 8) {
+                    Button {
+                        Task { await model.submit() }
+                    } label: {
+                        Label("Create Forwarder", systemImage: "arrow.turn.down.right")
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .disabled(!model.canSubmit)
+                    .keyboardShortcut(.defaultAction)
+
+                    if model.submitState == .submitting {
+                        ProgressView().controlSize(.small)
+                    }
+                }
+                if case .failed(let message) = model.submitState {
+                    Label(message, systemImage: "exclamationmark.triangle.fill")
+                        .font(.caption)
+                        .foregroundStyle(.red)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+            }
+        }
+    }
 
     private var unconfiguredSection: some View {
         VStack(alignment: .leading, spacing: 8) {
