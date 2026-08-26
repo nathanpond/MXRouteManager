@@ -165,6 +165,21 @@ nonisolated struct MXRouteClient: Sendable {
         }
         return domains
     }
+
+    /// The domain's mailboxes, sorted by address. Sorting happens here rather
+    /// than in the view: Phase 4's destination picker renders this array
+    /// directly, and DirectAdmin returns mailboxes in creation order, which
+    /// reads as random in a dropdown.
+    func listEmailAccounts(domain: String) async throws -> [EmailAccount] {
+        let domain = domain.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !domain.isEmpty else {
+            throw MXRouteError.invalidRequest(message: "Choose a domain before loading its email accounts.")
+        }
+        guard let accounts = try await send([EmailAccount].self, method: "GET", pathComponents: ["domains", domain, "email-accounts"]) else {
+            throw MXRouteError.decoding(message: "The email accounts response contained no data.")
+        }
+        return accounts.sorted { $0.email.localizedCaseInsensitiveCompare($1.email) == .orderedAscending }
+    }
 }
 
 @MainActor
