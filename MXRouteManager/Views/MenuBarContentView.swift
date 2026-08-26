@@ -20,8 +20,14 @@ struct MenuBarContentView: View {
             Divider()
 
             HStack {
+                SettingsLink {
+                    Label("Settings…", systemImage: "gearshape")
+                }
+                .simultaneousGesture(TapGesture().onEnded {
+                    NSApplication.shared.activate()
+                })
+
                 Spacer()
-                // Settings entry point added in plan 01-02
                 Button("Quit") {
                     NSApplication.shared.terminate(nil)
                 }
