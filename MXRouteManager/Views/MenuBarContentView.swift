@@ -15,26 +15,21 @@ struct MenuBarContentView: View {
 
     var body: some View {
         @Bindable var model = model
-        VStack(alignment: .leading, spacing: 12) {
-            Text("New Forwarder")
-                .font(.headline)
-
-            if settings.isConfigured {
-                if case .succeeded = model.submitState {
-                    actionSection
-                } else {
-                    formSection
-                    actionSection
-                }
-            } else {
-                unconfiguredSection
-            }
-
+        VStack(alignment: .leading, spacing: 0) {
+            header
+            content
+                .padding(.horizontal, 16)
+                .padding(.bottom, 14)
+                .animation(.snappy(duration: 0.2), value: model.submitState)
+                .animation(.easeInOut(duration: 0.15), value: model.domains)
+                .animation(.easeInOut(duration: 0.15), value: model.accounts)
             Divider()
             footer
+                .padding(.horizontal, 12)
+                .padding(.vertical, 8)
         }
-        .padding(16)
         .frame(width: 320)
+        .background(.regularMaterial)
         .task {
             guard settings.isConfigured else { return }
             await model.loadDomains()
@@ -50,9 +45,39 @@ struct MenuBarContentView: View {
         }
     }
 
+    private var header: some View {
+        HStack(spacing: 7) {
+            Image(systemName: "arrow.turn.down.right")
+                .font(.system(size: 12, weight: .semibold))
+                .foregroundStyle(.tint)
+            Text("New Forwarder")
+                .font(.headline)
+            Spacer()
+        }
+        .padding(.horizontal, 16)
+        .padding(.top, 14)
+        .padding(.bottom, 12)
+    }
+
+    @ViewBuilder
+    private var content: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            if settings.isConfigured {
+                if case .succeeded = model.submitState {
+                    actionSection
+                } else {
+                    formSection
+                    actionSection
+                }
+            } else {
+                unconfiguredSection
+            }
+        }
+    }
+
     private var formSection: some View {
         @Bindable var model = model
-        return VStack(alignment: .leading, spacing: 12) {
+        return VStack(alignment: .leading, spacing: 14) {
             domainField
             aliasField
             destinationField
@@ -61,10 +86,11 @@ struct MenuBarContentView: View {
 
     private var domainField: some View {
         @Bindable var model = model
-        return VStack(alignment: .leading, spacing: 4) {
+        return VStack(alignment: .leading, spacing: 5) {
             Label("Domain", systemImage: "globe")
-                .font(.caption)
+                .font(.caption.weight(.medium))
                 .foregroundStyle(.secondary)
+                .imageScale(.small)
             switch model.domains {
             case .idle, .loading:
                 HStack(spacing: 6) {
@@ -95,10 +121,11 @@ struct MenuBarContentView: View {
 
     private var aliasField: some View {
         @Bindable var model = model
-        return VStack(alignment: .leading, spacing: 4) {
+        return VStack(alignment: .leading, spacing: 5) {
             Label("Alias", systemImage: "at")
-                .font(.caption)
+                .font(.caption.weight(.medium))
                 .foregroundStyle(.secondary)
+                .imageScale(.small)
             TextField("sales", text: $model.aliasInput)
                 .textFieldStyle(.roundedBorder)
                 .autocorrectionDisabled()
@@ -109,7 +136,9 @@ struct MenuBarContentView: View {
                 if let reason = model.aliasValidation.errorReason {
                     Text(reason).foregroundStyle(.red)
                 } else if let address = model.previewAddress {
-                    Text(address).foregroundStyle(.secondary)
+                    Text(address)
+                        .font(.system(.caption, design: .monospaced))
+                        .foregroundStyle(.secondary)
                 } else {
                     Text(" ")
                 }
@@ -122,10 +151,11 @@ struct MenuBarContentView: View {
 
     private var destinationField: some View {
         @Bindable var model = model
-        return VStack(alignment: .leading, spacing: 4) {
+        return VStack(alignment: .leading, spacing: 5) {
             Label("Forward to", systemImage: "tray.and.arrow.down")
-                .font(.caption)
+                .font(.caption.weight(.medium))
                 .foregroundStyle(.secondary)
+                .imageScale(.small)
             switch model.accounts {
             case .idle:
                 Text("Choose a domain first.").font(.caption).foregroundStyle(.secondary)
@@ -165,9 +195,10 @@ struct MenuBarContentView: View {
                     .symbolRenderingMode(.multicolor)
                     .font(.subheadline.weight(.semibold))
                 Text("\(forwarder.email) → \(forwarder.destinations.first ?? model.selectedDestination)")
-                    .font(.callout)
+                    .font(.system(.callout, design: .monospaced))
                     .textSelection(.enabled)
                     .lineLimit(2)
+                    .fixedSize(horizontal: false, vertical: true)
                 Button("Create Another") {
                     model.reset()
                     aliasFocused = true
@@ -216,9 +247,14 @@ struct MenuBarContentView: View {
                 Label("Settings…", systemImage: "gearshape")
             }
             .simultaneousGesture(TapGesture().onEnded { NSApplication.shared.activate() })
+            .buttonStyle(.borderless)
+            .controlSize(.small)
 
             Spacer()
             Button("Quit") { NSApplication.shared.terminate(nil) }
+                .buttonStyle(.borderless)
+                .controlSize(.small)
+                .foregroundStyle(.secondary)
         }
     }
 }
