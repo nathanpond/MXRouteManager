@@ -5,16 +5,17 @@
 See: .planning/PROJECT.md (updated 2026-08-25)
 
 **Core value:** Creating a new email forwarder takes under ten seconds from clicking the menu bar icon.
-**Current focus:** Phase 5 — Polish & Release (not yet planned)
+**Current focus:** Phase 5 — Polish & Release (executing)
 
 ## Current Position
 
-Phase: 4 of 5 complete (Create-Forwarder UI) — verified 34/34 must-haves, moved to completed/
-Plan: —
-Status: Ready for `/kata-plan-phase 5`
-Last activity: 2026-08-26 — Phase 4 verified (passed) and completed; GitHub issues #4/#18-#22 closed
+Phase: 5 of 5, Plans 1-2 of 3 complete (first-run/empty states + app icon, parallel wave)
+Plan: 05-03 next
+Status: Phase 5 in progress
+Last activity: 2026-08-26 — Wave 1 complete (05-01, 05-02 in parallel, no conflicts)
 
 Progress: Phases: ████░ 4/5 complete
+Phase 5: ██░ 2/3 plans
 
 ## Accumulated Context
 
@@ -45,5 +46,5 @@ Issue count: 0 (see .planning/issues/open/)
 
 ## Session Continuity
 
-Last session: 2026-08-26 — Phase 4 executed and verified (3 plans, live create checkpoint approved, verifier passed 34/34)
-Next step: `/kata-plan-phase 5`
+Last session: 2026-08-26 — Phase 5 wave 1 executed (05-01 first-run/empty states, 05-02 app icon — parallel)
+Next step: Execute plan 05-03 (README, Release build, final checkpoint)
