@@ -14,5 +14,9 @@ struct MXRouteManagerApp: App {
             MenuBarContentView()
         }
         .menuBarExtraStyle(.window)
+
+        Settings {
+            SettingsView()
+        }
     }
 }
